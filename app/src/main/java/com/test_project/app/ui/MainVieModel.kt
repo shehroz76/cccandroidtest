@@ -18,19 +18,54 @@ import kotlinx.coroutines.launch
 import org.json.JSONException
 import org.json.JSONObject
 
-class mainViewModel : ViewModel() {
+class MainVieModel : ViewModel() {
 
 
+    private lateinit var contactBy: Person
+    private lateinit var requestedBy: Person
+    private lateinit var createdBy: Person
+    private lateinit var estimateObject: Estimate
     private val personRepo = PersonRepo()
     private val estimateRepo = EstimateRepo()
 
-    fun getPerson(id: String) {
+    fun getCreatedBy(id: String) {
+        personRepo.getUser(id)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe({ user ->
+                if (user != null) {
+                    createdBy=user
+                    // user data
+                }
+            }, { error ->
+                // show error
+
+            })
+    }
+
+    fun getRequestedBy(id: String) {
+        personRepo.getUser(id)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe({ user ->
+                if (user != null) {
+                    requestedBy=user
+                    // user data
+                }
+            }, { error ->
+                // show error
+
+            })
+    }
+
+    fun getContact(id: String) {
         personRepo.getUser(id)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({ user ->
                 if (user != null) {
                     // user data
+                    contactBy=user
                 }
             }, { error ->
                 // show error
@@ -45,7 +80,10 @@ class mainViewModel : ViewModel() {
             ?.subscribe({ estimate ->
                 if (estimate != null) {
                     // get user by created user
-                    estimate.created_by?.let { getPerson(it) }
+                    estimateObject=estimate
+                    estimate.created_by?.let { getCreatedBy(it) }
+                    estimate.requested_by?.let { getRequestedBy(it) }
+                    estimate.contact?.let { getContact(it) }
                 }
             }, { error ->
 
@@ -53,8 +91,8 @@ class mainViewModel : ViewModel() {
     }
 
     // example using live data
-    fun getEstimateData()=estimateRepo.getEstimateByLiveData()
-    fun getPersonData(id:String)=personRepo.getUserUsingLiveData(id)
+    fun getEstimateData() = estimateRepo.getEstimateByLiveData()
+    fun getPersonData(id: String) = personRepo.getUserUsingLiveData(id)
 
     fun saveObject() {
         // save data using kotlin coroutine scope

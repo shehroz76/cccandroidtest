@@ -2,19 +2,28 @@ package com.test_project.app.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.test_project.app.R
+import com.test_project.app.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: mainViewModel
+    private lateinit var viewModel: MainVieModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
         initViewModel()
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        // LiveData should call setValue() to update UI via binding
+        // LiveData should call setValue() to update UI via binding
+        binding.setViewModel(viewModel)
+        binding.setLifecycleOwner(this)
+
         getData()
     }
 
@@ -38,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(mainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainVieModel::class.java)
     }
 
 }

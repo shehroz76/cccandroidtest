@@ -15,12 +15,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
         initViewModel()
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
-        // LiveData should call setValue() to update UI via binding
-        // LiveData should call setValue() to update UI via binding
         binding.setViewModel(viewModel)
         binding.setLifecycleOwner(this)
 

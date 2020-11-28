@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/_12sdp"
-            android:text="@{viewModel.estimateData.company}"
+            android:textSize="@dimen/_10sdp"
+            android:text="@{viewModel.estimateDataObject.company}"
             app:layout_constraintLeft_toRightOf="@+id/estimateImage"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:text="@{viewModel.estimateData.address}"
-            android:textSize="@dimen/_12sdp"
+            android:text="@{viewModel.estimateDataObject.address}"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/colorGrey"
             app:layout_constraintLeft_toRightOf="@+id/estimateImage"
             app:layout_constraintTop_toBottomOf="@+id/companyName" />
 
@@ -51,9 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="Est. Details"
+            android:text="@string/est_details"
+            android:textStyle="bold"
             android:textColor="@color/colorBlack"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_10sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/estimateImage" />
 
@@ -82,9 +84,9 @@
                     android:id="@+id/txtEst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Est. Number"
+                    android:text="@string/est_number"
                     android:textColor="@color/colorGrey"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,9 +94,9 @@
                     android:id="@+id/txtEstNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="32"
+                    android:text="@{Integer.toString(viewModel.estimateDataObject.number)}"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtEst" />
 
@@ -103,9 +105,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Created"
+                    android:text="@string/created"
                     android:textColor="@color/colorGrey"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtEstNumber" />
 
@@ -113,9 +115,10 @@
                     android:id="@+id/txtCreatedDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2020-08-22"
+                    android:text="@{viewModel.estimateDataObject.created_date}"
+                    android:maxLength="10"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtCreated" />
 
@@ -124,9 +127,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Requester"
+                    android:text="@string/requester"
                     android:textColor="@color/colorGrey"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtCreatedDate" />
 
@@ -134,9 +137,9 @@
                     android:id="@+id/txtRequesterName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="John snow"
+                    android:text="@{viewModel.getRequestUserdata().first_name +` ` + viewModel.getContactUserdata().last_name}"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtRequester" />
 
@@ -153,9 +156,9 @@
                     android:id="@+id/textRevision"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Est. Number"
+                    android:text="@string/revision_number"
                     android:textColor="@color/colorGrey"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,9 +166,9 @@
                     android:id="@+id/textRevisionNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="32"
+                    android:text="@{Integer.toString(viewModel.estimateDataObject.revision_number)}"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textRevision" />
 
@@ -174,9 +177,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Created"
+                    android:text="@string/created_by"
                     android:textColor="@color/colorGrey"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textRevisionNumber" />
 
@@ -184,9 +187,9 @@
                     android:id="@+id/txtCreatedByName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2020-08-22"
+                    android:text="@{viewModel.getCreatedUserdata().first_name +` ` + viewModel.getContactUserdata().last_name}"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtCreatedBy" />
 
@@ -195,9 +198,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Requester"
+                    android:text="@string/contact"
                     android:textColor="@color/colorGrey"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtCreatedByName" />
 
@@ -205,9 +208,9 @@
                     android:id="@+id/txtContactName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="John snow"
+                    android:text="@{viewModel.getContactUserdata().first_name +` ` + viewModel.getContactUserdata().last_name}"
                     android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtContact" />
 

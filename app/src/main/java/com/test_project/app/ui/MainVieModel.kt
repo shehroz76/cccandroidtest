@@ -2,9 +2,7 @@ package com.test_project.app.ui
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.test_project.app.database.repositories.EstimateRepo
 import com.test_project.app.database.repositories.PersonRepo
@@ -20,11 +18,10 @@ import org.json.JSONObject
 
 class MainVieModel : ViewModel() {
 
-
-    private lateinit var contactBy: Person
-    private lateinit var requestedBy: Person
-    private lateinit var createdBy: Person
-    private lateinit var estimateObject: Estimate
+    private val estimateObject = MutableLiveData<Estimate>()
+    private val contactByData = MutableLiveData<Person>()
+    private val requestedByData = MutableLiveData<Person>()
+    private val createdByData = MutableLiveData<Person>()
     private val personRepo = PersonRepo()
     private val estimateRepo = EstimateRepo()
 
@@ -34,13 +31,29 @@ class MainVieModel : ViewModel() {
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({ user ->
                 if (user != null) {
-                    createdBy=user
                     // user data
+                    createdByData.postValue(user)
                 }
             }, { error ->
                 // show error
 
             })
+    }
+
+    fun getContactUserdata():LiveData<Person>{
+        return contactByData
+    }
+
+    fun getRequestUserdata():LiveData<Person>{
+        return requestedByData
+    }
+
+    fun getCreatedUserdata():LiveData<Person>{
+        return createdByData
+    }
+
+    fun getEstimateDataObject(): LiveData<Estimate>{
+        return estimateObject
     }
 
     fun getRequestedBy(id: String) {
@@ -49,8 +62,8 @@ class MainVieModel : ViewModel() {
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({ user ->
                 if (user != null) {
-                    requestedBy=user
                     // user data
+                    requestedByData.postValue(user)
                 }
             }, { error ->
                 // show error
@@ -65,7 +78,7 @@ class MainVieModel : ViewModel() {
             ?.subscribe({ user ->
                 if (user != null) {
                     // user data
-                    contactBy=user
+                    contactByData.postValue(user)
                 }
             }, { error ->
                 // show error
@@ -79,10 +92,12 @@ class MainVieModel : ViewModel() {
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({ estimate ->
                 if (estimate != null) {
-                    // get user by created user
-                    estimateObject=estimate
+                    estimateObject.postValue(estimate)
+                    // get person who created the estimate
                     estimate.created_by?.let { getCreatedBy(it) }
+                    // get person who request the estimate
                     estimate.requested_by?.let { getRequestedBy(it) }
+                    // get contacted person
                     estimate.contact?.let { getContact(it) }
                 }
             }, { error ->

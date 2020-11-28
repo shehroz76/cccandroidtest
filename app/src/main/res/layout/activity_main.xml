@@ -4,15 +4,208 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/_5sdp"
+    android:background="@color/colorWhite"
     tools:context=".ui.MainActivity">
+
+    <ImageView
+        android:id="@+id/estimateImage"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:src="@drawable/ic_placeholder"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="Placeholder Name"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintLeft_toRightOf="@+id/estimateImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:text="Placeholder Name"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/colorGrey"
+        app:layout_constraintLeft_toRightOf="@+id/estimateImage"
+        app:layout_constraintTop_toBottomOf="@+id/companyName" />
+
+    <TextView
+        android:id="@+id/txtEstDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Est. Details"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/_12sdp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/estimateImage" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:textColor="@color/colorGrey"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/txtEstDetail" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/line">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtEst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Est. Number"
+                android:textColor="@color/colorGrey"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtEstNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEst" />
+
+            <TextView
+                android:id="@+id/txtCreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/colorGrey"
+                android:text="Created"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEstNumber" />
+
+            <TextView
+                android:id="@+id/txtCreatedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-08-22"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCreated" />
+
+            <TextView
+                android:id="@+id/txtRequester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGrey"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Requester"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCreatedDate" />
+
+            <TextView
+                android:id="@+id/txtRequesterName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John snow"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRequester" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/textRevision"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGrey"
+                android:text="Est. Number"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textRevisionNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textRevision" />
+
+            <TextView
+                android:id="@+id/txtCreatedBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/colorGrey"
+                android:text="Created"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textRevisionNumber" />
+
+            <TextView
+                android:id="@+id/txtCreatedByName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-08-22"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCreatedBy" />
+
+            <TextView
+                android:id="@+id/txtContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/colorGrey"
+                android:text="Requester"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtCreatedByName" />
+
+            <TextView
+                android:id="@+id/txtContactName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John snow"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtContact" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
